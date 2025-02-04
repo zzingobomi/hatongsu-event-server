@@ -1,5 +1,9 @@
 import { Client, Room } from "colyseus";
-import { ESMessageType } from "../shared/eventserver.type";
+import {
+  ESJoinMessage,
+  ESLeaveMessage,
+  ESMessageType,
+} from "../shared/eventserver.type";
 
 export class GalleryRoom extends Room {
   onCreate(options: any) {
@@ -8,31 +12,32 @@ export class GalleryRoom extends Room {
     console.log("GalleryRoom created!", options);
 
     this.onMessage(ESMessageType.CLIENT_CHAT_MESSAGE, (client, message) => {
-      console.log(
-        "GalleryRoom received message from",
-        client.sessionId,
-        ":",
-        message
-      );
-      this.broadcast(
-        ESMessageType.SERVER_CHAT_MESSAGE,
-        `(${client.sessionId}) ${message}`
-      );
+      const chatMessage = {
+        sessionId: client.sessionId,
+        message,
+      };
+      console.log("Chat message received!", chatMessage);
+
+      this.broadcast(ESMessageType.SERVER_CHAT_MESSAGE, chatMessage);
     });
   }
 
   onJoin(client: Client, options: any) {
-    this.broadcast(
-      ESMessageType.SERVER_NEW_PLAYER,
-      `${client.sessionId} joined.`
-    );
+    const joinMessage: ESJoinMessage = {
+      sessionId: client.sessionId,
+    };
+    console.log("GalleryRoom joined!", joinMessage);
+
+    this.broadcast(ESMessageType.SERVER_JOIN_MESSAGE, joinMessage);
   }
 
   onLeave(client: Client, consented: boolean) {
-    this.broadcast(
-      ESMessageType.SERVER_PLAYER_DISCONNECTED,
-      `${client.sessionId} left.`
-    );
+    const leaveMessage: ESLeaveMessage = {
+      sessionId: client.sessionId,
+    };
+    console.log("GalleryRoom left!", leaveMessage);
+
+    this.broadcast(ESMessageType.SERVER_LEAVE_MESSAGE, leaveMessage);
   }
 
   onDispose() {

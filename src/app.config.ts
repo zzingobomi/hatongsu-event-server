@@ -3,11 +3,12 @@ import { matchMaker } from "colyseus";
 import { monitor } from "@colyseus/monitor";
 import { playground } from "@colyseus/playground";
 import { GalleryRoom } from "./rooms/GalleryRoom";
+import { ESGalleryRoomName } from "./shared/eventserver.type";
 
 export default config({
   initializeGameServer: (gameServer) => {
-    gameServer.define("gallery_room", GalleryRoom);
-    matchMaker.createRoom("gallery_room", {});
+    gameServer.define(ESGalleryRoomName, GalleryRoom);
+    matchMaker.createRoom(ESGalleryRoomName, {});
   },
 
   initializeExpress: (app) => {
