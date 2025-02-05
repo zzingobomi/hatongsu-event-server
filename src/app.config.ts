@@ -4,6 +4,7 @@ import { monitor } from "@colyseus/monitor";
 import { playground } from "@colyseus/playground";
 import { GalleryRoom } from "./rooms/GalleryRoom";
 import { ESGalleryRoomName } from "./shared/eventserver.type";
+import cors from "cors";
 
 export default config({
   initializeGameServer: (gameServer) => {
@@ -12,6 +13,14 @@ export default config({
   },
 
   initializeExpress: (app) => {
+    if (process.env.NODE_ENV === "production") {
+      app.use(
+        cors({
+          origin: "https://www.practice-zzingo.net",
+          credentials: true,
+        })
+      );
+    }
     /**
      * Bind your custom express routes here:
      * Read more: https://expressjs.com/en/starter/basic-routing.html
