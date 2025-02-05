@@ -6,6 +6,14 @@ import { GalleryRoom } from "./rooms/GalleryRoom";
 import { ESGalleryRoomName } from "./shared/eventserver.type";
 import cors from "cors";
 
+matchMaker.controller.getCorsHeaders = function (req) {
+  return {
+    "Access-Control-Allow-Origin": "*",
+    Vary: "*",
+    // 'Vary': "<header-name>, <header-name>, ...",
+  };
+};
+
 export default config({
   initializeGameServer: (gameServer) => {
     gameServer.define(ESGalleryRoomName, GalleryRoom);
