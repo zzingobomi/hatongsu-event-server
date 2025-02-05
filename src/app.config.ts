@@ -22,16 +22,16 @@ export default config({
 
   initializeExpress: (app) => {
     // CORS 설정 강화 (모든 환경에서 적용)
-    app.use(
-      cors({
-        origin: "https://www.practice-zzingo.net",
-        methods: ["GET", "POST", "OPTIONS"],
-        allowedHeaders: ["Content-Type", "Authorization", "Range"],
-        credentials: true,
-      })
-    );
+    // app.use(
+    //   cors({
+    //     origin: "https://www.practice-zzingo.net",
+    //     methods: ["GET", "POST", "OPTIONS"],
+    //     allowedHeaders: ["Content-Type", "Authorization", "Range"],
+    //     credentials: true,
+    //   })
+    // );
 
-    app.options("*", cors()); // 모든 OPTIONS 요청 처리
+    // app.options("*", cors()); // 모든 OPTIONS 요청 처리
     /**
      * Bind your custom express routes here:
      * Read more: https://expressjs.com/en/starter/basic-routing.html
