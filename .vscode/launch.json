@@ -1,0 +1,44 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Colyseus (TSX Watch)",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["tsx", "watch", "${workspaceFolder}/src/index.ts"],
+      "cwd": "${workspaceFolder}",
+      "protocol": "inspector",
+      "env": {
+        "NODE_ENV": "development",
+        "PORT": "2567"
+      },
+      "sourceMaps": true,
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Colyseus (Production Build)",
+      "program": "${workspaceFolder}/build/index.js",
+      "cwd": "${workspaceFolder}",
+      "protocol": "inspector",
+      "env": {
+        "NODE_ENV": "production",
+        "PORT": "2567"
+      },
+      "sourceMaps": true,
+      "preLaunchTask": "npm: build",
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach to Colyseus",
+      "port": 9229,
+      "restart": true,
+      "protocol": "inspector"
+    }
+  ]
+}
