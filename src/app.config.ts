@@ -4,13 +4,11 @@ import { monitor } from "@colyseus/monitor";
 import { playground } from "@colyseus/playground";
 import { GalleryRoom } from "./rooms/GalleryRoom";
 import { ESGalleryRoomName } from "./shared/eventserver.type";
-import cors from "cors";
 
 matchMaker.controller.getCorsHeaders = function (req) {
   return {
-    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": `${process.env.FRONTEND_URL}`,
     Vary: "*",
-    // 'Vary': "<header-name>, <header-name>, ...",
   };
 };
 
@@ -21,17 +19,6 @@ export default config({
   },
 
   initializeExpress: (app) => {
-    // CORS 설정 강화 (모든 환경에서 적용)
-    // app.use(
-    //   cors({
-    //     origin: "https://www.practice-zzingo.net",
-    //     methods: ["GET", "POST", "OPTIONS"],
-    //     allowedHeaders: ["Content-Type", "Authorization", "Range"],
-    //     credentials: true,
-    //   })
-    // );
-
-    // app.options("*", cors()); // 모든 OPTIONS 요청 처리
     /**
      * Bind your custom express routes here:
      * Read more: https://expressjs.com/en/starter/basic-routing.html
