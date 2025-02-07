@@ -18,6 +18,7 @@ export class GalleryRoom extends Room<GalleryRoomState> {
       const player = this.state.players.get(client.sessionId);
       const chatMessage: ESChatMessage = {
         sessionId: client.sessionId,
+        playerId: player.GetPlayerId(),
         nickname: player.GetNickname(),
         message,
         timestamp: Date.now(),
@@ -34,7 +35,7 @@ export class GalleryRoom extends Room<GalleryRoomState> {
     const player = this.state.players.get(sessionId);
     console.log("GalleryRoom joined!", options.nickname, sessionId);
 
-    this.state.CreatePlayer(sessionId, options.nickname);
+    this.state.CreatePlayer(sessionId, options.playerId, options.nickname);
   }
 
   onLeave(client: Client, consented: boolean) {
