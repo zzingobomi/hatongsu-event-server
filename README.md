@@ -1,35 +1,37 @@
-### Hatongsu Event Server
+# Hatongsu Event Server
 
-#### Reverse Proxy 실행
+## Demo
 
-- 테스트용 도커 빌드
+[https://practice-zzingo.net](https://practice-zzingo.net)
 
-```bash
-./reverse-proxy/build_and_push.sh <DOCKER_USERNAME> <DOCKER_PASSWORD>
-```
+## Screenshot
 
-- 네트워크
-  - hatongsu
-- 로컬포트 컨테이너 포트
-  - 2567:2567
-- 도커 볼륨
-  - docker/hatongsu/certs:/etc/nginx/ssl
-  - 읽기전용
+<div align="center">
+  <h3>메인 페이지</h3>
+  <p align="center">
+    <img src="./docs/hatongsu_main_1.png" width="45%" style="vertical-align: middle">
+    <img src="./docs/hatongsu_main_2.png" width="45%" style="vertical-align: middle">
+  </p>
+  
+  <h3>3D 갤러리</h3>
+  <p align="center">
+    <img src="./docs/hatongsu_gallery_1.jpg" width="45%" style="vertical-align: middle">
+    <img src="./docs/hatongsu_gallery_2.png" width="45%" style="vertical-align: middle">
+  </p>
 
-#### Event Server 실행
+  <h3>대시보드</h3>
+  <p align="center">
+    <img src="./docs/hatongsu_dashboard_1.png" width="45%" style="vertical-align: middle">
+    <img src="./docs/hatongsu_dashboard_2.png" width="45%" style="vertical-align: middle">
+  </p>
+</div>
 
-- 테스트용 도커 빌드
+## Architecture
 
-```bash
-./build_and_push.sh <DOCKER_USERNAME> <DOCKER_PASSWORD>
-```
+![Architecture](./docs/architecture.svg)
 
-- 네트워크
-  - hatongsu
-- 로컬포트 컨테이너 포트
-  - 자동:2567
+## My Project
 
-#### TODO
-
-- Colyseus 에서 uWebSocket 을 지원하는 듯하다. 한번 확인해볼것
-  - https://docs.colyseus.io/server/transport/#native-c-websocket-transport-via-uwebsocketsjs
+|                                                 [Frontend](https://github.com/zzingobomi/hatongsu-frontend)                                                  |                                                 [Backend](https://github.com/zzingobomi/hatongsu-backend)                                                 |                                                   [World Server](https://github.com/zzingobomi/hatongsu-world-server)                                                    |                                                   [Event Server](https://github.com/zzingobomi/hatongsu-event-server)                                                    |                                              [Infra](https://github.com/zzingobomi/on-premise)                                              |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: |
+| [![Frontend](https://img.shields.io/github/languages/top/zzingobomi/hatongsu-frontend?style=for-the-badge)](https://github.com/zzingobomi/hatongsu-frontend) | [![Backend](https://img.shields.io/github/languages/top/zzingobomi/hatongsu-backend?style=for-the-badge)](https://github.com/zzingobomi/hatongsu-backend) | [![World Server](https://img.shields.io/github/languages/top/zzingobomi/hatongsu-world-server?style=for-the-badge)](https://github.com/zzingobomi/hatongsu-world-server) | [![Event Server](https://img.shields.io/github/languages/top/zzingobomi/hatongsu-event-server?style=for-the-badge)](https://github.com/zzingobomi/hatongsu-event-server) | [![Infra](https://img.shields.io/github/languages/top/zzingobomi/on-premise?style=for-the-badge)](https://github.com/zzingobomi/on-premise) |
