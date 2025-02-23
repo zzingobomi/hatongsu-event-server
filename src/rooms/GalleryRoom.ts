@@ -30,6 +30,12 @@ export class GalleryRoom extends Room<GalleryRoomState> {
   }
 
   onJoin(client: Client, options: ESJoinOptions) {
+    if (!options.nickname || !options.playerId) {
+      console.error("Invalid join options", options);
+      client.leave();
+      return;
+    }
+
     const sessionId = client.sessionId;
 
     const player = this.state.players.get(sessionId);
